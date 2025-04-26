@@ -14,7 +14,8 @@
         "paths": {
             "@/*": ["./resources/js/*"],
             "ziggy-js": ["./vendor/tightenco/ziggy"]
-        }
+        },
+        "types": ["unplugin-vue-define-options/macros-global"]
     },
     "include": ["resources/js/**/*.ts", "resources/js/**/*.vue"]
 }
