@@ -6,6 +6,7 @@
 // biome-ignore lint: disable
 export {}
 declare global {
+  const DefaultLayout: typeof import('@/Layouts/DefaultLayout.vue')['default']
   const EffectScope: typeof import('vue')['EffectScope']
   const GuestLayout: typeof import('@/Layouts/GuestLayout.vue')['default']
   const SampleLayout: typeof import('@/Layouts/SampleLayout.vue')['default']

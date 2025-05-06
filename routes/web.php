@@ -1,6 +1,10 @@
 <?php
 
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PageController;
+use App\Http\Controllers\CommentController;
+use App\Http\Controllers\TagController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -27,5 +31,17 @@ Route::middleware('auth')->group(function () {
 Route::get("/greeting", function(){
     return Inertia::render("HelloWorld");
 });
+
+Route::get("/posts", [PostController::class, "index"]);
+Route::get("/post/{id}/{slug?}", [PostController::class, "show"]);
+
+//page
+Route::get("/page/{id}", [PageController::class, 'show']);
+
+Route::get('profile/{id}', [ProfileController::class, 'show']);
+
+Route::post('/post/{id}/comment', [CommentController::class,'store']);
+
+Route::get('/tags/{tag}', [TagController::class, 'show']);
 
 require __DIR__.'/auth.php';
