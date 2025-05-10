@@ -3,11 +3,12 @@
 namespace App\Models;
 
 use App\Traits\HasComments;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
-    use HasComments;
+    use HasComments, HasFactory;
     protected $fillable = ['title', 'description', 'content'];
 
     public function author()

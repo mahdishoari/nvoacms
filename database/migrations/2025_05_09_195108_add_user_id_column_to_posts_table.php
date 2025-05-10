@@ -11,9 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->char('mobile')->nullable();
-            $table->boolean('is_verified_mobile')->nullable();
+        Schema::table('posts', function (Blueprint $table) {
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
         });
     }
 
@@ -22,9 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('migration', function (Blueprint $table) {
-            $table->dropColumn('mobile');
-            $table->dropColumn('is_verified_mobile');
+        Schema::table('posts', function (Blueprint $table) {
+            $table->dropColumn('user_id');
         });
     }
 };
