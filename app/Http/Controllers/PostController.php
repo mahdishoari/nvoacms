@@ -2,6 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StorePostRequest;
+use App\Http\Requests\UpdatePostRequest;
+use App\Http\Resources\DatagridPostResource;
+use App\Models\Post;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 use Inertia\Response as InertiaResponse;
 use App\Services\PostService;
@@ -25,4 +31,60 @@ class PostController extends Controller
         $post = $this->postService->getPostById($id, $slug);
         return Inertia::render("Posts/Show", compact('id', 'slug', 'post'));
     }
+
+    public function create() {
+        return Inertia::render('Posts/Create');
+    }
+
+    public function store(StorePostRequest $request)
+    {
+        $post = new Post();
+        $post->title = $request->title;
+        $post->slug = $request->slug;
+        $post->description = $request->description;
+        $post->content = $request->content;
+        $post->user_id = Auth::id();
+
+        try {
+            $post->save();
+        } catch( Exception $e) {
+            return redirect()->back()->withErrors([
+                'error' => 'مشکل در ذخیره پست',
+            ]);
+        }
+        return redirect('/posts')->with('success', 'پست با موفقیت ثبت شد');
+    }
+
+    public function edit(Post $post)
+    {
+        return Inertia::render('Posts/Edit', compact('post'));
+    }
+
+    public function update(UpdatePostRequest $request, Post $post)
+    {
+        $post->title = $request->title;
+        $post->slug = $request->slug;
+        $post->description = $request->description;
+        $post->content = $request->content;
+        try {
+            $post->save();
+        } catch( Exception $e) {
+            return redirect()->back()->withErrors([
+                'error' => 'مشکل در ویرایش پست',
+            ]);
+        }
+        return redirect('/posts/datagrid')->with('success', 'پست با موفقیت ویرایش شد');
+    }
+
+    public function datagrid(Request $request): InertiaResponse
+    {
+        $posts = Post::with('user')->withCount('postComments');
+        if ($request->filter) {
+            $posts = $posts->whereLike('title', '%' . $request->filter . '%');
+        }
+        $posts = $posts->paginate(10);
+        $data = DatagridPostResource::collection($posts);
+        return Inertia::render('Posts/Datagrid', compact('data'));
+    }
+
 }

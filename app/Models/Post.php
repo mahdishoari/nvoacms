@@ -14,29 +14,34 @@ class Post extends Model
     public function author()
     {
         return $this->belongsTo(User::class);
-    }    
+    }
 
-    public function postComment()
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function postComments()
     {
         return $this->morphMany(Comment::class,'commentable')->where('commentable_type', Post::class);
     }
 
-    public function latest_comment() 
+    public function latest_comment()
     {
         return $this->morphOne(Comment::class, 'commentable')->latestOfMany();
     }
 
-    // public function tags() 
+    // public function tags()
     // {
     //     return $this->belongsToMany(Tag::class);
     // }
 
-    public function tags() 
+    public function tags()
     {
         return $this->morphToMany(Tag::class, 'taggable');
     }
 
-    public function meta() 
+    public function meta()
     {
         return $this->morphOne(Meta::class,"metaable");
     }

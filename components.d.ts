@@ -10,6 +10,7 @@ declare module 'vue' {
   export interface GlobalComponents {
     ApplicationLogo: typeof import('./resources/js/Components/ApplicationLogo.vue')['default']
     Checkbox: typeof import('./resources/js/Components/Checkbox.vue')['default']
+    copy: typeof import('./resources/js/Components/Ui/Input copy.vue')['default']
     DangerButton: typeof import('./resources/js/Components/DangerButton.vue')['default']
     Dropdown: typeof import('./resources/js/Components/Dropdown.vue')['default']
     DropdownLink: typeof import('./resources/js/Components/DropdownLink.vue')['default']
@@ -37,8 +38,12 @@ declare module 'vue' {
     UiAlert: typeof import('./resources/js/Components/Ui/Alert.vue')['default']
     UiCard: typeof import('./resources/js/Components/Ui/Card.vue')['default']
     UiCommentList: typeof import('./resources/js/Components/Ui/Comment/List.vue')['default']
+    UiDatagrid: typeof import('./resources/js/Components/Ui/Datagrid.vue')['default']
+    UiEditor: typeof import('./resources/js/Components/Ui/Editor.vue')['default']
+    UiFile: typeof import('./resources/js/Components/Ui/File.vue')['default']
     UiImput: typeof import('./resources/js/Components/Ui/imput.vue')['default']
     UiInput: typeof import('./resources/js/Components/Ui/Input.vue')['default']
+    UiTextarea: typeof import('./resources/js/Components/Ui/Textarea.vue')['default']
     UiToogle: typeof import('./resources/js/Components/Ui/Toogle.vue')['default']
   }
 }

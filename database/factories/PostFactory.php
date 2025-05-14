@@ -1,8 +1,6 @@
 <?php
 
 namespace Database\Factories;
-
-use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -21,9 +19,7 @@ class PostFactory extends Factory
             'title' => $this->faker->sentence,
             'content' => $this->faker->paragraph,
             'description' => $this->faker->paragraph,
-            'slug' => $this->faker->slug,
-            'user_id' =>User::factory()->create()->id,
-
+            'slug' => $this->faker->slug
         ];
     }
 }

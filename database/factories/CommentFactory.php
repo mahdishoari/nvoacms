@@ -2,12 +2,13 @@
 
 namespace Database\Factories;
 
+use App\Models\Post;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Tag>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Comment>
  */
-class TagFactory extends Factory
+class CommentFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,7 +18,8 @@ class TagFactory extends Factory
     public function definition(): array
     {
         return [
-            "name" => fake()->unique()->word()
+            'body' => $this->faker->paragraph,
+            'post_id' => Post::inRandomOrder('id')->first()->id
         ];
     }
 }

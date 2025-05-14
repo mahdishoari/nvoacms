@@ -44,4 +44,12 @@ Route::post('/post/{id}/comment', [CommentController::class,'store']);
 
 Route::get('/tags/{tag}', [TagController::class, 'show']);
 
+//admin
+Route::get('/posts/create', [PostController::class, 'create'])->middleware('auth', 'throttle:35,15');
+Route::post('/post', [PostController::class, 'store'])->middleware('auth', 'throttle:35,15');
+Route::get('/posts/edit/{post}', [PostController::class, 'edit'])->middleware('auth', 'throttle:35,15')->name('posts.edit');
+Route::put('/post/{post}', [PostController::class, 'update'])->middleware('auth', 'throttle:35,15');
+Route::get('/posts/datagrid', [PostController::class, 'datagrid'])->middleware('auth', 'throttle:35,15')->name('posts.datagrid');
+
+
 require __DIR__.'/auth.php';

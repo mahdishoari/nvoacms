@@ -6,6 +6,7 @@
 // biome-ignore lint: disable
 export {}
 declare global {
+  const AuthenticatedLayout: typeof import('@/Layouts/AuthenticatedLayout.vue')['default']
   const DefaultLayout: typeof import('@/Layouts/DefaultLayout.vue')['default']
   const EffectScope: typeof import('vue')['EffectScope']
   const GuestLayout: typeof import('@/Layouts/GuestLayout.vue')['default']
@@ -62,6 +63,7 @@ declare global {
   const useSlots: typeof import('vue')['useSlots']
   const useTemplateRef: typeof import('vue')['useTemplateRef']
   const useTest: typeof import('@/Composables/useTest.ts')['default']
+  const useUrlSearchParams: typeof import('@/Composables/useUrlSearchParams.ts')['default']
   const watch: typeof import('vue')['watch']
   const watchEffect: typeof import('vue')['watchEffect']
   const watchPostEffect: typeof import('vue')['watchPostEffect']
