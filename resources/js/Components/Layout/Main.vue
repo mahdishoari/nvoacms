@@ -5,6 +5,6 @@
 </template>
 <style scoped>
 main {
-    @apply p-5 w-full md:w-3/4
+    @apply container mx-auto w-full flex-grow p-5 px-4 py-8 md:w-3/4;
 }
 </style>

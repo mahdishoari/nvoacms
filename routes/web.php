@@ -50,6 +50,12 @@ Route::post('/post', [PostController::class, 'store'])->middleware('auth', 'thro
 Route::get('/posts/edit/{post}', [PostController::class, 'edit'])->middleware('auth', 'throttle:35,15')->name('posts.edit');
 Route::put('/post/{post}', [PostController::class, 'update'])->middleware('auth', 'throttle:35,15');
 Route::get('/posts/datagrid', [PostController::class, 'datagrid'])->middleware('auth', 'throttle:35,15')->name('posts.datagrid');
+Route::get('/comments/datagrid', [CommentController::class, 'datagrid'])->middleware('auth', 'throttle:35,15')->name('comments.datagrid');
+Route::post('/comments/status', [CommentController::class, 'status'])->middleware('auth')->name('comments.status');
+Route::get('/comments/trash/{comment}', [CommentController::class, 'trash'])->middleware('auth')->name('comments.trash')->withTrashed();
+Route::get('/comments/delete/{comment}', [CommentController::class, 'trash'])->middleware('auth')->name('comments.delete')->withTrashed();
+Route::get('/tags/datagrid', [TagController::class, 'datagrid'])->middleware('auth', 'throttle:35,15')->name('tags.datagrid');
+Route::get('/tags/edit', [TagController::class, 'esit'])->middleware('auth', 'throttle:35,15')->name('tags.edit');
 
 
 require __DIR__.'/auth.php';

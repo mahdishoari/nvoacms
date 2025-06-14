@@ -1,15 +1,9 @@
 <template>
-    <div>
+    <div class="flex flex-grow flex-col md:flex-row">
         <slot />
     </div>
 </template>
 
-<script setup>
+<script setup></script>
 
-</script>
-
-<style scoped>
-div {
-    @apply flex flex-col md:flex-row
-}
-</style>
+<style scoped></style>

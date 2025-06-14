@@ -21,9 +21,10 @@ const options = reactive({
     actions: {
         edit: {
             title: 'ویرایش',
-            route: 'posts.edit'
-        }
-    }
+            route: 'posts.edit',
+        },
+    },
+    routeKey: 'posts',
 
 })
 </script>

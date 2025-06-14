@@ -8,7 +8,7 @@
                     <ui-textarea label="توضیحات" :error="form.errors.description" v-model="form.description" />
                 </div>
                 <div>
-                    <ui-file accept="image/png, image/gif, image/jpeg" label="تصویر شاخص" :error="form.error.featured_image" v-model="form.featured_image" />
+                    <ui-file accept="image/png, image/gif, image/jpeg" label="تصویر شاخص" :error="form.errors.featured_image" v-model="form.featured_image" />
                 </div>
             </div>
             <ui-editor label="متن" :error="form.errors.content" v-model="form.content" />
@@ -22,18 +22,16 @@
 import { useForm } from '@inertiajs/vue3';
 
 defineOptions({
-    layout: AuthenticatedLayout
-})
+    layout: AuthenticatedLayout,
+});
 
 const form = useForm({
     title: '',
     description: '',
     content: '',
     slug: '',
-    featured_image: ''
-})
+    featured_image: '',
+});
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>

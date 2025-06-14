@@ -3,7 +3,7 @@
         <h3 class="text-2xl font-bold">
             لیست نظرات
         </h3>
-        <div v-for="comment in comments" class="odd:bg-slate-50 odd:bg-slate-100 p-4 rounded-2xl"> 
+        <div v-for="comment in comments" class="odd:bg-slate-50 odd:bg-slate-100 p-4 rounded-2xl">
             {{ comment.body }}
         </div>
     </div>

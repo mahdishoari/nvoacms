@@ -1,36 +1,27 @@
 <template>
-    <footer>
-        <div class="meta">
-            <h1>مگ مگ</h1>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Exercitationem, neque error! Atque dignissimos voluptate dolores? Officia consequuntur optio eligendi voluptatem rem nesciunt ex minus nemo, dolores cumque autem. Consequatur, quibusdam.</p>
+    <footer class="border-t border-gray-800 bg-gray-900 py-6 text-gray-300">
+        <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4">
+
+            <!-- Logo or Title -->
+            <div class="text-center md:text-right">
+                <span class="text-xl font-bold text-white">NOVA</span>
+                <p class="mt-1 text-sm text-gray-400">
+                    سیستم مدیریت محتوای حرفه‌ای
+                </p>
+            </div>
+
+            <!-- Links -->
+            <div class="text-center">
+                <a href="/terms" class="text-sm text-blue-400 hover:underline">قوانین و شرایط استفاده</a>
+            </div>
+
+            <!-- Copyright -->
+            <div class="text-center text-sm text-gray-400 md:text-left">
+                © 2025 تمامی حقوق این وب‌سایت محفوظ است | طراحی و توسعه با
+                <a href="#" class="text-indigo-400 hover:underline">NOVA</a>
+            </div>
+
         </div>
-        <nav>
-            <ul>
-                <li>
-                    <Link href="/">خانه</Link>
-                </li>
-                <li>
-                    <Link href="/posts">پست ها</Link>
-                </li>
-                <li></li>
-            </ul>
-        </nav>
     </footer>
 </template>
-<style scoped>
-footer {
-    @apply bg-slate-900 text-gray-100 flex flex-col md:flex-row md:justify-between gap-8
-}
-
-footer h1 {
-    @apply text-lg
-}
-
-footer .meta {
-    @apply w-full md:w-1/3
-}
-
-footer nav {
-    @apply w-full md:w-2/3
-}
-</style>
+<style scoped></style>

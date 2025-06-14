@@ -1,7 +1,7 @@
 <template>
     <header>
         <div>
-            <h1>مگ مگ</h1>
+            <h1>NOVA</h1>
             <button @click="onToggle()">
                 <IconNav class="w-8 h-8 fill-slate-700" />
             </button>
@@ -52,6 +52,6 @@ nav ul {
     @apply md:flex md:flex-row md:gap-4
 }
 nav.close {
-    @apply hidden md:block  
+    @apply hidden md:block
 }
 </style>

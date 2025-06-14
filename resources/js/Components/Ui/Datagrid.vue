@@ -9,7 +9,7 @@
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
                     </svg>
                 </div>
-                <input type="text" v-model="filter" id="table-search" class="block pt-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search for items">
+                <input type="text" v-model="filter" id="table-search" class="block pt-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="جستجو برای ...">
             </div>
         </div>
         <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -39,11 +39,16 @@
                         <label for="checkbox-table-search-1" class="sr-only">checkbox</label>
                     </div>
                 </td>
-                <td v-for="column , key in options.columns" class="px-6 py-4">
-                    {{item[key]}}
+                <td v-for="column, key in options.columns" class="px-6 py-4">
+                    <slot v-if="slots[`column${key[0].toUpperCase() + key.slice(1).toLowerCase()}`]" :name="slots[`column${key[0].toUpperCase() + key.slice(1).toLowerCase()}`]" :data="item"/>
+                    <p v-else>{{item[key]}}</p>
                 </td>
                 <td class="px-6 py-4">
-                    <Link v-for="action, key in options.actions" :href="route(action.route, {id:item.id})" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">{{action.title}}</Link>
+                    <div class="flex items-center space-x-2 rtl:space-x-reverse">
+                    <Link v-for="action, key in options.actions" :href="route(action.route, {id:item.id})" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">{{action.title}}
+                        <span v-if="action && action.icon" v-html="action.icon" class="w-8 h-8" />
+                    </Link>
+                    </div>
                 </td>
             </tr>
             </tbody>
@@ -76,10 +81,11 @@ import {router} from "@inertiajs/vue3";
 
 const props = defineProps({
     options: Object,
-    data: [Array, Object]
+    data: [Array, Object],
 })
 
-const filter = ref('')
+const filter = ref('');
+const slots = useSlots();
 
 watchDebounced(
     filter,
@@ -87,7 +93,7 @@ watchDebounced(
         const params = useUrlSearchParams('history')
         params.filter = filter.value
 
-        router.visit('/posts/datagrid?' + objectToUrlParams(params))
+        router.visit(`/${props.options.routeKey}/datagrid?` + objectToUrlParams(params))
     },
     { debounce: 500, maxWait: 1000 },
 )

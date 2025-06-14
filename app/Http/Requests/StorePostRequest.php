@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Validator;
 
 class StorePostRequest extends FormRequest
 {
@@ -25,6 +26,8 @@ class StorePostRequest extends FormRequest
             'title' => 'required|min:5|max:255',
             'content' => 'required|min:25',
             'slug' => 'required|unique:posts,slug',
+            'featured_image' => 'required|image|mimes:jpeg,jpg,gif,png|max:2048',
+
         ];
     }
 
