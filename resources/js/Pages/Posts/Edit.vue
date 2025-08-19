@@ -14,17 +14,15 @@
 import { useForm } from '@inertiajs/vue3';
 
 const props = defineProps({
-    post: Object
-})
+    post: Object,
+});
 
 const form = useForm({
     title: props.post.title,
     description: props.post.description,
     content: props.post.content,
-    slug: props.post.slug
-})
+    slug: props.post.slug,
+});
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>

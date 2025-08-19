@@ -40,7 +40,7 @@
                     </div>
                 </td>
                 <td v-for="column, key in options.columns" class="px-6 py-4">
-                    <slot v-if="slots[`column${key[0].toUpperCase() + key.slice(1).toLowerCase()}`]" :name="slots[`column${key[0].toUpperCase() + key.slice(1).toLowerCase()}`]" :data="item"/>
+                    <slot v-if="slots[`column${key[0].toUpperCase() + key.slice(1).toLowerCase()}`]" :name="`column${key[0].toUpperCase() + key.slice(1).toLowerCase()}`" :data="item"/>
                     <p v-else>{{item[key]}}</p>
                 </td>
                 <td class="px-6 py-4">

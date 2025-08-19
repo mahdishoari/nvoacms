@@ -2,9 +2,12 @@
 
 namespace App\Providers;
 
+use App\Events\TagCreated;
+use App\Listeners\sendTagNotification;
 use App\Services\PostService;
 use Illuminate\Support\Facades\Vite;
 use Illuminate\Support\ServiceProvider;
+use Psy\Readline\Hoa\Event;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -28,5 +31,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Vite::prefetch(concurrency: 3);
+//        Event::listen(TagCreated::class, sendTagNotification::class);
     }
 }

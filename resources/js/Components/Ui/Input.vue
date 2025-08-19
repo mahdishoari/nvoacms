@@ -15,16 +15,16 @@ import { useVModel } from '@vueuse/core';
 const props = defineProps({
     modelValue: String,
     error: {
-        type: {Boolean, String},
-        default: false
+        type: { Boolean, String },
+        default: false,
     },
     placeholder: String,
-    label: String
+    label: String,
 })
 
-const emit = defineEmits(['update:modelValue'])
+const emit = defineEmits(['update:modelValue']);
 
-const model = useVModel(props, 'modelValue', emit)
+const model = useVModel(props, 'modelValue', emit);
 </script>
 
 <style scoped></style>

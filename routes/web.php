@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PageController;
@@ -42,7 +43,7 @@ Route::get('profile/{id}', [ProfileController::class, 'show']);
 
 Route::post('/post/{id}/comment', [CommentController::class,'store']);
 
-Route::get('/tags/{tag}', [TagController::class, 'show']);
+
 
 //admin
 Route::get('/posts/create', [PostController::class, 'create'])->middleware('auth', 'throttle:35,15');
@@ -52,10 +53,14 @@ Route::put('/post/{post}', [PostController::class, 'update'])->middleware('auth'
 Route::get('/posts/datagrid', [PostController::class, 'datagrid'])->middleware('auth', 'throttle:35,15')->name('posts.datagrid');
 Route::get('/comments/datagrid', [CommentController::class, 'datagrid'])->middleware('auth', 'throttle:35,15')->name('comments.datagrid');
 Route::post('/comments/status', [CommentController::class, 'status'])->middleware('auth')->name('comments.status');
-Route::get('/comments/trash/{comment}', [CommentController::class, 'trash'])->middleware('auth')->name('comments.trash')->withTrashed();
-Route::get('/comments/delete/{comment}', [CommentController::class, 'trash'])->middleware('auth')->name('comments.delete')->withTrashed();
+Route::delete('/comments/trash/{comment}', [CommentController::class, 'trash'])->middleware('auth')->name('comments.trash')->withTrashed();
+Route::delete('/comments/delete/{comment}', [CommentController::class, 'delete'])->middleware('auth')->name('comments.delete')->withTrashed();
 Route::get('/tags/datagrid', [TagController::class, 'datagrid'])->middleware('auth', 'throttle:35,15')->name('tags.datagrid');
-Route::get('/tags/edit', [TagController::class, 'esit'])->middleware('auth', 'throttle:35,15')->name('tags.edit');
-
+Route::get('/tags/edit/{tag}', [TagController::class, 'edit'])->middleware('auth', 'throttle:35,15')->name('tags.edit');
+Route::put('/tags/{tag}', [TagController::class, 'update'])->middleware('auth', 'throttle:35,15')->name('tags.update');
+Route::post('/tags', [TagController::class, 'store'])->middleware('auth', 'api', 'throttle:35,15')->name('tags.store');
+Route::get('/tags/{tag}', [TagController::class, 'show']);
+Route::post('/category', [CategoryController::class, 'store'])->middleware('auth')->name('category.store');
+Route::get('/categories', [CategoryController::class, 'index'])->middleware('auth')->name('categories.index');
 
 require __DIR__.'/auth.php';

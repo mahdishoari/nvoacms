@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 use Inertia\Response as InertiaResponse;
 use App\Services\PostService;
+use Illuminate\Support\Collection;
+
 class PostController extends Controller
 {
 
@@ -40,6 +42,9 @@ class PostController extends Controller
 
     public function store(StorePostRequest $request)
     {
+        $tagIds = Collection::make($request->tags)->map(function ($item) {
+            return abs($item['id']);
+        })->flatten()->values()->toArray();
         $post = new Post();
         $post->title = $request->title;
         $post->slug = $request->slug;
@@ -65,6 +70,7 @@ class PostController extends Controller
 
         try {
             $post->save();
+            $post->tags()->sync($tagIds);
         } catch( Exception $e) {
             return redirect()->back()->withErrors([
                 'error' => 'مشکل در ذخیره پست',

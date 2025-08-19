@@ -31,15 +31,4 @@ class Tag extends Model
     {
         return $this->morphedByMany(Post::class, 'taggable');
     }
-
-    public function datagrid(Request $request)
-    {
-        $tags = Tag::with('taggable');
-        if ($request->filter) {
-            $tags = $tags->whereLike('name', "%{$request->filter}%");
-        }
-        $tags = $tags->paginate(10);
-        $data = DatagridTagResource::collection($tags);
-        return Inertia::render('Tags/Datagrid', compact('data'));
-    }
 }

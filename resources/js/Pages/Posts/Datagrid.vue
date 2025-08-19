@@ -4,8 +4,8 @@
 
 <script setup>
 defineOptions({
-    layout: AuthenticatedLayout
-})
+    layout: AuthenticatedLayout,
+});
 
 const props = defineProps({
     data: [Object, Array]

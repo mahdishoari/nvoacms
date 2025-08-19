@@ -6,7 +6,7 @@
                     <ui-input label="عنوان" :error="form.errors.title" v-model="form.title" />
                     <ui-input label="نامک" :error="form.errors.slug" v-model="form.slug" />
                     <ui-textarea label="توضیحات" :error="form.errors.description" v-model="form.description" />
-                    <ui-tag label-class="text-gray-800 dark:text-white font-semibold" label="برچسب ها" :error="form.errors.tag" v-model="form.tags" />
+                    <ui-tag class="py-5" label="برچسب ها" :error="form.errors.tag" v-model="form.tags" />
                 </div>
                 <div>
                     <ui-file accept="image/png, image/gif, image/jpeg" label="تصویر شاخص" :error="form.errors.featured_image" v-model="form.featured_image" />
