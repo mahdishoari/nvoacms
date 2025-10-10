@@ -7,8 +7,8 @@ import DefineOptions from 'unplugin-vue-define-options/vite'
 
 const compositionResolver = (name) => {
     const isCompositionApi = name.startsWith("use") && name != "useRoute";
-    if(isCompositionApi) return `@/Composables/${name}.ts`;
-}
+    if (isCompositionApi) return `@/Composables/${name}.ts`;
+};
 
 const layoutResolver = (name) => {
     const isLayout = name.endsWith("Layout");
@@ -32,18 +32,35 @@ export default defineConfig({
         }),
         AutoImport({
             imports: ['vue'],
-            resolvers: [compositionResolver, layoutResolver]
+            resolvers: [compositionResolver, layoutResolver],
         }),
-        Components({ 
-            /* options */
-            dirs: ["resources/js/Components"],
+        Components({
+            dirs: ['resources/js/Components'],
             directoryAsNamespace: true,
-         }),
-         DefineOptions()
+        }),
+        DefineOptions(),
     ],
+
     resolve: {
         alias: {
-            "@": "/resources/js"
-        }
-    }
+            '@': '/resources/js',
+        },
+    },
+
+    // ✅ allow access from other containers and hosts
+    server: {
+        host: true, // instead of 0.0.0.0
+        port: 5173,
+        strictPort: true,
+        cors: true,
+        origin: 'http://localhost:5173',
+        hmr: {
+            protocol: 'ws',
+            host: 'localhost',
+            clientPort: 5173,
+        },
+        watch: {
+            usePolling: false,
+        },
+    },
 });

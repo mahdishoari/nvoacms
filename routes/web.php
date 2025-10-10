@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\MessengerController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PageController;
@@ -8,6 +9,7 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\TagController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
+
 use Inertia\Inertia;
 
 Route::get('/', function () {
@@ -62,5 +64,8 @@ Route::post('/tags', [TagController::class, 'store'])->middleware('auth', 'api',
 Route::get('/tags/{tag}', [TagController::class, 'show']);
 Route::post('/category', [CategoryController::class, 'store'])->middleware('auth')->name('category.store');
 Route::get('/categories', [CategoryController::class, 'index'])->middleware('auth')->name('categories.index');
+Route::get('/messenger', [MessengerController::class, 'index'])->middleware('auth')->name('messenger.index');
+Route::get('/messenger/{user}', [MessengerController::class, 'conversation'])->middleware('auth','api')->name('messenger.conversation');
+Route::post('/messenger/{user}', [MessengerController::class, 'send'])->middleware('auth')->name('messenger.send');
 
 require __DIR__.'/auth.php';

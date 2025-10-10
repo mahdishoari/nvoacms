@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Events\TagCreated;
 use App\Listeners\sendTagNotification;
 use App\Services\PostService;
+use Illuminate\Support\Facades\Broadcast;
 use Illuminate\Support\Facades\Vite;
 use Illuminate\Support\ServiceProvider;
 use Psy\Readline\Hoa\Event;
@@ -32,5 +33,6 @@ class AppServiceProvider extends ServiceProvider
     {
         Vite::prefetch(concurrency: 3);
 //        Event::listen(TagCreated::class, sendTagNotification::class);
+        broadcast::routes(['middleware' => ['auth:api']]);
     }
 }
